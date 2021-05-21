@@ -4,7 +4,8 @@ var $ = require('gulp-load-plugins')({}),
     browserify = require('browserify'),
     currentDateTime = require('./utils/currentDateTime'),
     source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer');
+    buffer = require('vinyl-buffer'),
+    uglify = require('gulp-uglify-es').default;
 
 module.exports = function(gulp, options) {
   var browserifyBundler;
@@ -35,7 +36,7 @@ module.exports = function(gulp, options) {
       .pipe(source(options.browserify.out))
       .pipe(buffer())
       .pipe($.util.env.type !== 'production' ? $.sourcemaps.init({loadMaps: true}) : $.util.noop())
-      .pipe($.util.env.type === 'production' ? $.uglify() : $.util.noop())
+      .pipe($.util.env.type === 'production' ? uglify() : $.util.noop())
       .pipe($.util.env.type !== 'production' ? $.sourcemaps.write('./') : $.util.noop())
       .pipe(gulp.dest(options.browserify.dist));
   }
