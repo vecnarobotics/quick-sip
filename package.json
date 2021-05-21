@@ -1,5 +1,5 @@
 {
-  "name": "quick-sip",
+  "name": "quick-sip-vecnarobotics",
   "description": "Gulp build process tasks that provide watchify and sass compilation.",
   "repository": {
     "type": "git",
